@@ -9,6 +9,7 @@
 
 require_once "src/BooksControlller.php";
 
+header("Content-type: application/json");
 
 $url_parts = explode("/", $_SERVER["REQUEST_URI"]);
 print_r($url_parts);

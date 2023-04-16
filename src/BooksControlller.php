@@ -6,7 +6,6 @@ class BooksController
 {
     public function processRequest(string $method, ?string $id): void
     {
-        var_dump($method, $id);
         if ($id != null) {
             $this->processResourceRequest($method, $id);
         } else {
@@ -36,7 +35,10 @@ class BooksController
         require_once "./Database.php";
         $sql = "SELECT * from books";
         $result = $conn->query($sql);
-        $row = mysqli_fetch_array($result);
-        echo json_encode($row);
+        $rows = array();
+        while ($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        echo json_encode($rows);
     }
 };

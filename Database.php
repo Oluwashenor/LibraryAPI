@@ -2,7 +2,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "Library";
+$dbname = "library";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,5 +11,4 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   ("Connection failed: " . $conn->connect_error);
 } else {
-  echo json_encode("Connected to Database successfully");
 }

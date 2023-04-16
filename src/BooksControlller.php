@@ -15,13 +15,22 @@ class BooksController
 
     private function processResourceRequest(string $method, string $id)
     {
+        switch ($method) {
+            case 'GET':
+                $this->getBook($id);
+                break;
+
+            default:
+                # code...
+                break;
+        }
     }
 
     private function processResourceCollection(string $method)
     {
         switch ($method) {
             case 'GET': {
-                    $this->getbooks();
+                    $this->getBooks();
                     break;
                 }
             default:
@@ -30,7 +39,7 @@ class BooksController
         }
     }
 
-    private function getbooks()
+    private function getBooks()
     {
         require_once "./Database.php";
         $sql = "SELECT * from books";
@@ -40,5 +49,14 @@ class BooksController
             $rows[] = $r;
         }
         echo json_encode($rows);
+    }
+
+    private function getBook($id)
+    {
+        require_once "./Database.php";
+        $sql = "SELECT * from books where id = '$id'";
+        $result = $conn->query($sql);
+        $response = mysqli_fetch_assoc($result);
+        echo json_encode($response);
     }
 };
